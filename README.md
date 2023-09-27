@@ -88,6 +88,7 @@ python eval_vsdf.py --conf dtu --data_dir_root data_s_volsdf --eval_rendering --
 
 - This work was supported in part by the NASA Biodiversity Program (Award 80NSSC21K1027), and NSF Grant IIS-2212046.
 - We also thank Alfredo Rivero for his thoughtful feedback and meticulous proofreading.
+- We borrowed code from [VolSDF](https://github.com/lioryariv/volsdf), [CasMVSNet](https://github.com/alibaba/cascade-stereo/tree/master/CasMVSNet), [UCSNet](https://github.com/touristCheng/UCSNet), [TransMVSNet](https://github.com/megvii-research/TransMVSNet), and [DTUeval-python](https://github.com/jzhangbs/DTUeval-python). We thank all the authors for their great work and repos.
 
 --------------------------------------
 
