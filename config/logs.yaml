@@ -1,0 +1,49 @@
+######################################## DTU ########################################
+Train:
+  python runner.py gpu=0 testlist=scan106 outdir=exps_mvs exps_folder=exps_vsdf # opt_stepNs=[10000,0,0]
+  # python runner.py gpu=0 testlist='config/lists/dtu.txt'
+
+Chamfer Distance:
+  python evals/eval_dtu.py --datadir exps_mvs --scan 106 --data_dir_root data_s_volsdf
+  # python evals/eval_dtu.py --datadir exps_mvs --scan -1 --data_dir_root data_s_volsdf
+
+Render:
+  python eval_vsdf.py --conf dtu --eval_rendering --data_dir_root data_s_volsdf --expname ours --exps_folder exps_vsdf --evals_folder exps_result --scan_ids 106 --gpu 0
+  python eval_vsdf.py --conf dtu --eval_mesh --data_dir_root data_s_volsdf --expname ours --exps_folder exps_vsdf --evals_folder exps_result --scan_ids 106 --gpu 0
+  # python eval_vsdf.py --conf dtu --eval_rendering --data_dir_root data_s_volsdf --expname ours --exps_folder exps_vsdf --evals_folder exps_result --gpu 0
+
+Prepare IBR:
+  python runner.py +create_scene=true outdir=exps_ibr testlist='config/lists/dtu.txt'
+
+Run IBR:
+  python simple_ibr.py outdir=exps_ibr +evals_folder=exps_result testlist=scan106
+  # python simple_ibr.py outdir=exps_ibr +evals_folder=exps_result testlist='config/lists/dtu.txt'
+
+PSNR/SSIM/LPIPS:
+  python eval_vsdf.py --conf dtu --data_dir_root data_s_volsdf --eval_rendering --expname ours --exps_folder exps_vsdf --evals_folder exps_result --result_from blend --scan_ids 106 --gpu 0
+  # python eval_vsdf.py --conf dtu --data_dir_root data_s_volsdf --eval_rendering --expname ours --exps_folder exps_vsdf --evals_folder exps_result --result_from blend --gpu 0
+
+############################################### BlendedMVS ########################################
+Train:
+  python runner.py vol=bmvs gpu=1 testlist=scan4 outdir=exps_mvs exps_folder=exps_vsdf # opt_stepNs=[10000,0,0]
+  # python runner.py vol=bmvs gpu=1 testlist='config/lists/bmvs.txt'
+
+Chamfer Distance:
+  python evals/eval_bmvs.py --datadir exps_mvs --scan 4 --data_dir_root data_s_volsdf
+  # python evals/eval_bmvs.py --datadir exps_mvs --scan -1 --data_dir_root data_s_volsdf
+
+Render:
+  python eval_vsdf.py --conf bmvs --eval_rendering --data_dir_root data_s_volsdf --expname ours --exps_folder exps_vsdf --evals_folder exps_result --scan_ids 4 --gpu 1
+  python eval_vsdf.py --conf bmvs --eval_mesh --data_dir_root data_s_volsdf --expname ours --exps_folder exps_vsdf --evals_folder exps_result --scan_ids 4 --gpu 1
+  # python eval_vsdf.py --conf bmvs --eval_rendering --data_dir_root data_s_volsdf --expname ours --exps_folder exps_vsdf --evals_folder exps_result --gpu 1
+
+Prepare IBR:
+  python runner.py vol=bmvs +create_scene=true outdir=exps_ibr testlist='config/lists/bmvs.txt'
+
+Run IBR:
+  python simple_ibr.py vol=bmvs outdir=exps_ibr +evals_folder=exps_result testlist=scan4
+  # python simple_ibr.py vol=bmvs outdir=exps_ibr +evals_folder=exps_result testlist='config/lists/bmvs.txt'
+
+PSNR/SSIM/LPIPS:
+  python eval_vsdf.py --conf bmvs --data_dir_root data_s_volsdf --eval_rendering --expname ours --exps_folder exps_vsdf --evals_folder exps_result --result_from blend --scan_ids 4 --gpu 1
+  # python eval_vsdf.py --conf bmvs --data_dir_root data_s_volsdf --eval_rendering --expname ours --exps_folder exps_vsdf --evals_folder exps_result --result_from blend --gpu 1
