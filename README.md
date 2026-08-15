@@ -25,7 +25,7 @@ pip install -r requirements.txt
 --------------------------------------
 
 ## Data
-Download [data_s_volsdf](https://drive.google.com/drive/folders/17id41OjHg6VEdEgfJtCmCxbBbsVnk6fy), inlcuding the DTU and the BlendedMVS Dataset. Then,
+Download [data_s_volsdf](https://pub-2f41b6222d7c403b82377f3735405576.r2.dev/data_s_volsdf.zip), inlcuding the DTU and the BlendedMVS Dataset. Then,
 
 ```bash
 unzip data_s_volsdf.zip -d ./
